@@ -68,7 +68,9 @@ public class TreeElementServiceImpl implements TreeElementService {
         treeElement.getParentid() != treeElement.getId()) {
             treeElementRepository.updateAddParentTreeElement(treeElement.getParentid());
             return treeElementRepository.getById(treeElement.getId());
-        } /*else if (treeElement.getId() != null && treeElement.getParentid() == null){
+        }
+
+        /*else if (treeElement.getId() != null && treeElement.getParentid() == null){
             treeElementRepository.updateDeleteParentTreeElementDel(treeElement.getId());
             treeElementRepository.updateTreeElementById(treeElement.getId(),
                     treeElement.getName(), treeElement.getParentid());
