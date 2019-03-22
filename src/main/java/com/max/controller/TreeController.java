@@ -27,14 +27,27 @@ public class TreeController {
     }
 
     @GetMapping("/trees/{id}")
-    public ResponseEntity<Object> getAllTreeElementById(@PathVariable(value = "id") int id){
+    public ResponseEntity<Object> getAllTreeElementsById(@PathVariable(value = "id") int id){
         List<TreeElement> treeElement = treeElementService.getAllTreeElementsById(id);
         return ResponseEntity.ok().body(treeElement);
     }
 
     @PostMapping("/tree")
-    public TreeElement addTreeElement(@RequestBody TreeElement treeElement){
-        return treeElementService.saveTreeElement(treeElement);
+    public ResponseEntity<TreeElement> addTreeElement(@RequestBody TreeElement treeElement){
+        return ResponseEntity.ok().body(treeElementService.saveTreeElement(treeElement));
+    }
+
+    @DeleteMapping("/tree/{id}")
+    public ResponseEntity<Object> deleteAllTreeElementsById(@PathVariable(value = "id") int id){
+        treeElementService.deleteTreeElementsById(id);
+        return ResponseEntity.ok().body(null);
+
+    }
+
+    @PutMapping("/tree")
+    public ResponseEntity<TreeElement> updateTreeElement(@RequestBody TreeElement treeElement){
+
+        return ResponseEntity.ok().body(treeElementService.updateTreeElement(treeElement));
     }
 
 

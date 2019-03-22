@@ -10,6 +10,8 @@ public interface TreeElementService {
     List<TreeElement> getAllTreeElements();
     TreeElement saveTreeElement(TreeElement treeElement);
     List<TreeElement> getAllTreeElementsById(int id);
+    void deleteTreeElementsById(int id);
+    TreeElement updateTreeElement(TreeElement treeElement);
 
 
 }

@@ -31,8 +31,8 @@ public class TreeElementServiceImpl implements TreeElementService {
     @Override
     public TreeElement saveTreeElement(TreeElement treeElement) {
 
-        if (treeElementRepository.updateParentTreeElement(treeElement.getParentid(),
-                Calendar.getInstance()) == 1) {
+        if (treeElement.getParentid() == null ||
+                treeElementRepository.updateAddParentTreeElement(treeElement.getParentid()) == 1) {
             treeElement.setCreatedate(Calendar.getInstance());
             treeElement.setUpdatedate(Calendar.getInstance());
             treeElement.setFinite(true);
@@ -47,6 +47,35 @@ public class TreeElementServiceImpl implements TreeElementService {
     public List<TreeElement> getAllTreeElementsById(int id) {
         List<TreeElement> treeElementList = treeElementRepository.fac(id);
         return treeElementList;
+    }
+
+    @Transactional
+    @Override
+    public void deleteTreeElementsById(int id) {
+        treeElementRepository.updateDeleteParentTreeElementDel(id);
+        treeElementRepository.deleteTreeElementsById(id);
+
+    }
+
+    @Transactional
+    @Override
+    public TreeElement updateTreeElement(TreeElement treeElement) {
+
+        if (treeElement.getId() != null && treeElement.getParentid() != null &&
+        treeElementRepository.updateDeleteParentTreeElementDel(treeElement.getId()) == 1 &&
+                treeElementRepository.updateTreeElementById(treeElement.getId(),
+                        treeElement.getName(), treeElement.getParentid()) == 1 &&
+        treeElement.getParentid() != treeElement.getId()) {
+            treeElementRepository.updateAddParentTreeElement(treeElement.getParentid());
+            return treeElementRepository.getById(treeElement.getId());
+        } /*else if (treeElement.getId() != null && treeElement.getParentid() == null){
+            treeElementRepository.updateDeleteParentTreeElementDel(treeElement.getId());
+            treeElementRepository.updateTreeElementById(treeElement.getId(),
+                    treeElement.getName(), treeElement.getParentid());
+            return treeElementRepository.getById(treeElement.getId());
+        }*/
+
+        return null;
     }
 
 
