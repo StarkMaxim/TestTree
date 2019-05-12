@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="TreeElements@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.14">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.15">
     <root id="1">
       <ServerVersion>9.4.21</ServerVersion>
     </root>
@@ -30,8 +30,8 @@
       <CreateRole>1</CreateRole>
       <CreateDb>1</CreateDb>
       <CanLogin>1</CanLogin>
-      <Replication>1</Replication>
       <ConnectionLimit>-1</ConnectionLimit>
+      <Replication>1</Replication>
     </role>
     <schema id="6" parent="3" name="information_schema">
       <ObjectId>11585</ObjectId>
@@ -104,8 +104,8 @@
     </extension>
     <sequence id="18" parent="11" name="hibernate_sequence">
       <ObjectId>16461</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>770</StateNumber>
+      <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
     </sequence>
@@ -171,8 +171,8 @@
       <ObjectId>16460</ObjectId>
       <StateNumber>769</StateNumber>
       <ColNames>id</ColNames>
-      <UnderlyingIndexName>tree_element_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
+      <UnderlyingIndexName>tree_element_pkey</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

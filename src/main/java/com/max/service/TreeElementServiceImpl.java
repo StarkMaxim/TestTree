@@ -61,21 +61,20 @@ public class TreeElementServiceImpl implements TreeElementService {
     @Override
     public TreeElement updateTreeElement(TreeElement treeElement) {
 
-        if (treeElement.getId() != null && treeElement.getParentid() != null &&
+        if (treeElement.getParentid() != treeElement.getId() && treeElement.getId() != null && treeElement.getParentid() != null &&
         treeElementRepository.updateDeleteParentTreeElementDel(treeElement.getId()) == 1 &&
                 treeElementRepository.updateTreeElementById(treeElement.getId(),
-                        treeElement.getName(), treeElement.getParentid()) == 1 &&
-        treeElement.getParentid() != treeElement.getId()) {
+                        treeElement.getName(), treeElement.getParentid()) == 1) {
             treeElementRepository.updateAddParentTreeElement(treeElement.getParentid());
             return treeElementRepository.getById(treeElement.getId());
         }
 
-        /*else if (treeElement.getId() != null && treeElement.getParentid() == null){
+        else if (treeElement.getId() != null && treeElement.getParentid() == null){
             treeElementRepository.updateDeleteParentTreeElementDel(treeElement.getId());
-            treeElementRepository.updateTreeElementById(treeElement.getId(),
-                    treeElement.getName(), treeElement.getParentid());
+            //treeElementRepository.updateTreeElementById(treeElement.getId(),
+              //      treeElement.getName(), treeElement.getParentid());
             return treeElementRepository.getById(treeElement.getId());
-        }*/
+        }
 
         return null;
     }
